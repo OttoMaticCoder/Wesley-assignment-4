@@ -17,19 +17,25 @@ public class FileService {
 	public Students[] readMasterList() throws FileNotFoundException, IOException {
 		
 		try(BufferedReader fileReader = new BufferedReader(new FileReader("student-master-list.csv"));) {
+			fileReader.readLine();
+			fileReader.skip(1);
 			Students[] stuList = new Students[101];
 			String line;
 			int i = 0;
 			
+			
+			
 			while((line = fileReader.readLine()) != null) {
-			String[] stuData = line.split(",");
 				
-//				String studentId = stuData[0];
+				
+			String[] stuData = line.split(",");
+			
+				String studentId = stuData[0];
 				String stuName = stuData[1];
 				String course = stuData[2];
 				String grade = stuData[3];
 				
-				Students student = new Students(stuName, course, grade);
+				Students student = new Students(studentId, stuName, course, grade);
 				
 				stuList[i] = student;
 					i++;	
@@ -39,28 +45,56 @@ public class FileService {
 			Arrays.sort(stuList, new Comparator<Students>() {
 
 				@Override
-				public int compare(Students alpha1, Students alpha2) {
-					return alpha1.getCourse().compareTo(alpha2.getCourse());
+				public int compare(Students course1, Students course2) {
+					// if statements used to handle nulls initially, not needed after first sort.
+					if(course1 == course2)
+						return 0;
+					if(course1 == null) {
+						return 1;
+					}
+					if(course2 == null) {
+						return -1;
+					}
+					return course1.getCourse().compareTo(course2.getCourse());
 				}
 			});
 			
-			try(BufferedWriter fileWriter = new BufferedWriter(new FileWriter("coures1.csv"));) {
-				fileWriter.write(stuList.length);
-				
-				
-				
-			}
-			
-			
-			
-			
 			System.out.println(Arrays.toString(stuList));
+			
+			Students[] apmthList = Arrays.copyOf(stuList, 33);
+			Arrays.sort(apmthList, new Comparator<Students>() {
+				@Override
+				public int compare(Students grade1, Students grade2) {
+					return grade2.getGrade().compareTo(grade1.getGrade());
+				}
+			});
+			System.out.println(Arrays.toString(apmthList));
+			
+			Students[] compsciList = Arrays.copyOfRange(stuList, 33, 67);
+			Arrays.sort(compsciList, new Comparator<Students>() {
+				@Override
+				public int compare(Students grade1, Students grade2) {
+					return grade2.getGrade().compareTo(grade1.getGrade());
+				}
+			});
+			System.out.println(Arrays.toString(compsciList));
+
+			Students[] statList = Arrays.copyOfRange(stuList, 67, 100);
+			Arrays.sort(statList, new Comparator<Students>() {
+				@Override
+				public int compare(Students grade1, Students grade2) {
+					return grade2.getGrade().compareTo(grade1.getGrade());
+				}
+			});
+			System.out.println(Arrays.toString(statList));
+			
+			
+			
+//			System.out.println(Arrays.toString(stuList));
 			return stuList;
 			
 		}
 		
-		
-		
 	}
-
+	
 }
