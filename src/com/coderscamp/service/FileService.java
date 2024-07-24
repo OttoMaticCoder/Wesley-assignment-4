@@ -62,30 +62,16 @@ public class FileService {
 			System.out.println(Arrays.toString(stuList));
 			
 			Students[] apmthList = Arrays.copyOf(stuList, 33);
-			Arrays.sort(apmthList, new Comparator<Students>() {
-				@Override
-				public int compare(Students grade1, Students grade2) {
-					return grade2.getGrade().compareTo(grade1.getGrade());
-				}
-			});
+			Arrays.sort(apmthList, new GradeSortComparator());
+				
 			System.out.println(Arrays.toString(apmthList));
 			
 			Students[] compsciList = Arrays.copyOfRange(stuList, 33, 67);
-			Arrays.sort(compsciList, new Comparator<Students>() {
-				@Override
-				public int compare(Students grade1, Students grade2) {
-					return grade2.getGrade().compareTo(grade1.getGrade());
-				}
-			});
+			Arrays.sort(compsciList, new GradeSortComparator());
 			System.out.println(Arrays.toString(compsciList));
 
 			Students[] statList = Arrays.copyOfRange(stuList, 67, 100);
-			Arrays.sort(statList, new Comparator<Students>() {
-				@Override
-				public int compare(Students grade1, Students grade2) {
-					return grade2.getGrade().compareTo(grade1.getGrade());
-				}
-			});
+			Arrays.sort(statList, new GradeSortComparator());
 			System.out.println(Arrays.toString(statList));
 			
 			

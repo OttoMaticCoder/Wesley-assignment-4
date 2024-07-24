@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import com.coderscamp.service.FileService;
-import com.coderscamp.service.UserService;
 
 public class GradeAndClassOrganizerApp {
 	
@@ -16,7 +15,8 @@ public class GradeAndClassOrganizerApp {
 		 
 		
 		Scanner scanner = new Scanner(System.in);
-		UserService userService = new UserService();
+		FileService fileService =  new FileService();		
+		fileService.readMasterList();
 		
 		
 		
