@@ -52,7 +52,7 @@ public class GradeAndClassOrganizerApp {
 		Arrays.sort(statList, new GradeSortComparator());
 		System.out.println(Arrays.toString(statList));
 		
-		fileService.writeToFile();
+		fileService.writer();
 	
 	}
 }

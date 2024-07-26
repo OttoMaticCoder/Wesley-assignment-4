@@ -47,16 +47,20 @@ public class FileService {
 		
 	}
 	
-	public void writeToFile() throws IOException {
+	public void writer() throws IOException {
 			BufferedWriter writer = null;
+			
 					
 					try {
-						writer = new BufferedWriter(new FileWriter("data.txt"));
-						writer.write("This is a test string that will be output into a file.\n");
-						writer.write("Is this line of text on a new line?");
+						writer = new BufferedWriter(new FileWriter("course1.csv"));
+						writer.write("Student ID, StudentName, Course, Grade \n");
+						for(Students student : stuList) {
+							writer.write(student.toString());
+						}
 					} finally {
 						if (writer != null) writer.close();
 					}
+		
 	}
 	
 }
