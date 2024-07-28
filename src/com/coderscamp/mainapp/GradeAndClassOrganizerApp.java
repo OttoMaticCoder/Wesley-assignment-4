@@ -22,37 +22,28 @@ public class GradeAndClassOrganizerApp {
 		
 		// Sorting array and creating individual lists
 		Arrays.sort(stuList, new Comparator<Students>() {
-			
-							@Override
-							public int compare(Students course1, Students course2) {
-								// if statements used to handle nulls initially, not needed after first sort.
-								if(course1 == course2)
-									return 0;
-								if(course1 == null) {
-									return 1;
-								}
-								if(course2 == null) {
-									return -1;
-								}
-								return course1.getCourse().compareTo(course2.getCourse());
-							}
-						});
-								System.out.println(Arrays.toString(stuList));
+				@Override
+				public int compare(Students course1, Students course2) {
+				return course1.getCourse().compareTo(course2.getCourse());
+			}});
+//								System.out.println(Arrays.toString(stuList));
 		
 								
 		Students[] apmthList = Arrays.copyOf(stuList, 33);
 		Arrays.sort(apmthList, new GradeSortComparator());
-		System.out.println(Arrays.toString(apmthList));
+//		System.out.println(Arrays.toString(apmthList));
 		
 		Students[] compsciList = Arrays.copyOfRange(stuList, 33, 67);
 		Arrays.sort(compsciList, new GradeSortComparator());
-		System.out.println(Arrays.toString(compsciList));
+//		System.out.println(Arrays.toString(compsciList));
 
 		Students[] statList = Arrays.copyOfRange(stuList, 67, 100);
 		Arrays.sort(statList, new GradeSortComparator());
-		System.out.println(Arrays.toString(statList));
+//		System.out.println(Arrays.toString(statList));
 		
-		fileService.writer();
-	
+		fileService.writer("course1.csv", compsciList);
+		fileService.writer("course2.csv", apmthList);
+		fileService.writer("course3.csv", statList);
+
 	}
 }

@@ -17,7 +17,7 @@ public class FileService {
 		try(BufferedReader fileReader = new BufferedReader(new FileReader("student-master-list.csv"));) {
 			fileReader.readLine();
 			fileReader.skip(1);
-			Students[] stuList = new Students[101];
+			Students[] stuList = new Students[100];
 			String line;
 			int i = 0;
 			
@@ -47,15 +47,15 @@ public class FileService {
 		
 	}
 	
-	public void writer() throws IOException {
+	public void writer(String classFile, Students[] stuList) throws IOException {
 			BufferedWriter writer = null;
 			
 					
 					try {
-						writer = new BufferedWriter(new FileWriter("course1.csv"));
+						writer = new BufferedWriter(new FileWriter(classFile));
 						writer.write("Student ID, StudentName, Course, Grade \n");
 						for(Students student : stuList) {
-							writer.write(student.toString());
+							writer.write(student.toString() + "\n");
 						}
 					} finally {
 						if (writer != null) writer.close();
