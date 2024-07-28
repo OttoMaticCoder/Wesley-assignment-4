@@ -40,7 +40,7 @@ public class FileService {
 				
 			}
 			
-			System.out.println(Arrays.toString(stuList));
+//			System.out.println(Arrays.toString(stuList));
 			return stuList;
 			
 		}
