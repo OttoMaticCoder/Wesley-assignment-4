@@ -1,13 +1,13 @@
 package com.coderscamp.students;
 
-public class Students {
+public class Student {
 	
 	String studentId;
 	String name;
 	String course;
 	String grade;
 	
-	public Students(String studentId, String name, String course, String grade) {
+	public Student(String studentId, String name, String course, String grade) {
 		
 		this.studentId = studentId;
 		this.name = name;
@@ -46,6 +46,4 @@ public class Students {
 		{
 		        return this.studentId + "," + this.name + "," + this.course + "," + this.grade;
 		}
-	
-
 }

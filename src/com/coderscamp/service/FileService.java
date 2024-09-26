@@ -8,59 +8,52 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Arrays;
-import com.coderscamp.students.Students;
+import com.coderscamp.students.Student;
 
 public class FileService {
 	
-	public Students[] readMasterList() throws FileNotFoundException, IOException {
-		
-		try(BufferedReader fileReader = new BufferedReader(new FileReader("student-master-list.csv"));) {
+	private String FILENAME = "student-master-list.csv";
+	
+	public Student[] readMasterList()  {
+		try(BufferedReader fileReader = new BufferedReader(new FileReader(FILENAME));) {
 			fileReader.readLine();
-			fileReader.skip(1);
-			Students[] stuList = new Students[100];
+			Student[] stuList = new Student[100];
 			String line;
-			int i = 0;
-			
-			
-			
+			int stuCount = 0;
+
 			while((line = fileReader.readLine()) != null) {
 				
-				
-			String[] stuData = line.split(",");
+				String[] stuData = line.split(",");
 			
 				String studentId = stuData[0];
 				String stuName = stuData[1];
 				String course = stuData[2];
 				String grade = stuData[3];
 				
-				Students student = new Students(studentId, stuName, course, grade);
-				
-				stuList[i] = student;
-					i++;	
-				
+				Student student = new Student(studentId, stuName, course, grade);
+		
+				stuList[stuCount] = student;
+				stuCount++;
 			}
-			
-//			System.out.println(Arrays.toString(stuList));
 			return stuList;
 			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
+		return null;
 	}
 	
-	public void writer(String classFile, Students[] stuList) throws IOException {
-			BufferedWriter writer = null;
-			
-					
-					try {
-						writer = new BufferedWriter(new FileWriter(classFile));
+	public void writer(Student[] stuList, String targetFilename) {
+					try (BufferedWriter writer = new BufferedWriter(new FileWriter(targetFilename));) {
 						writer.write("Student ID, StudentName, Course, Grade \n");
-						for(Students student : stuList) {
+						for(Student student : stuList) {
 							writer.write(student.toString() + "\n");
 						}
-					} finally {
-						if (writer != null) writer.close();
+					} catch (IOException e) {
+						e.printStackTrace();
 					}
-		
 	}
 	
 }

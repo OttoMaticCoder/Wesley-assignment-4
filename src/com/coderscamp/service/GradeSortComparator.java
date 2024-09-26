@@ -2,12 +2,12 @@ package com.coderscamp.service;
 
 import java.util.Comparator;
 
-import com.coderscamp.students.Students;
+import com.coderscamp.students.Student;
 
-public class GradeSortComparator implements Comparator<Students> {
+public class GradeSortComparator implements Comparator<Student> {
 
 	@Override
-	public int compare(Students grade1, Students grade2) {
+	public int compare(Student grade1, Student grade2) {
 		return grade2.getGrade().compareTo(grade1.getGrade());
 	}
 
